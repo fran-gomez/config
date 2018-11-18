@@ -1,0 +1,45 @@
+[global_config]
+  borderless = True
+  enabled_plugins = ,
+  geometry_hinting = True
+  tab_position = hidden
+  title_font = Hack 9
+  title_use_system_font = False
+[keybindings]
+  go_down = <Alt>j
+  go_left = <Alt>h
+  go_right = <Alt>l
+  go_up = <Alt>k
+  switch_to_tab_1 = <Alt>1
+  switch_to_tab_10 = <Alt>0
+  switch_to_tab_2 = <Alt>2
+  switch_to_tab_3 = <Alt>3
+  switch_to_tab_4 = <Alt>4
+  switch_to_tab_5 = <Alt>5
+  switch_to_tab_6 = <Alt>6
+  switch_to_tab_7 = <Alt>7
+  switch_to_tab_8 = <Alt>8
+  switch_to_tab_9 = <Alt>9
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      profile = default
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      size = 90, 30
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    background_color = "#323232"
+    background_darkness = 0.9
+    background_type = transparent
+    cursor_color = "#eceff4"
+    font = Hack 10
+    foreground_color = "#eceff4"
+    scrollback_lines = 1000
+    scrollbar_position = hidden
+    show_titlebar = False
+    use_system_font = False

@@ -1,0 +1,178 @@
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+set $mod Mod4
+
+font pango:Source Hack 15, Hack 10
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+#bindsym $mod+Shift+Return exec hyper
+#bindsym $mod+Return exec urxvtc
+
+bindsym $mod+q kill
+
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+h focus left
+bindsym $mod+l focus right
+
+bindsym $mod+Control+k move up 50
+bindsym $mod+Control+j move down 50
+bindsym $mod+Control+h move left 50
+bindsym $mod+Control+l move right 50
+
+bindsym $mod+Shift+k resize shrink height 10 px or 10 ppt
+bindsym $mod+Shift+j resize grow height 10 px or 10 ppt
+bindsym $mod+Shift+h resize shrink width 10 px or 10 ppt
+bindsym $mod+Shift+l resize grow width 10 px or 10 ppt
+#bindsym $mod+47 resize grow width 10 px or 10 ppt
+
+#bindsym $mod+h split h
+#bindsym $mod+v split v
+bindsym $mod+v split toggle
+
+bindsym $mod+f fullscreen toggle
+
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+bindsym $mod+Shift+space floating toggle
+
+bindsym $mod+space focus mode_toggle
+
+bindsym $mod+a focus parent
+
+set $workspace1 "1"
+set $workspace2 "2"
+set $workspace3 "3"
+set $workspace4 "4"
+set $workspace5 "5"
+set $workspace6 "6"
+set $workspace7 "7"
+set $workspace8 "8"
+set $workspace9 "9"
+set $workspace10 "10"
+
+set $parallax ~/.config/parallax/move.sh
+# switch to workspace
+bindsym $mod+1 workspace $workspace1; exec $parallax 0 0
+bindsym $mod+2 workspace $workspace2; exec $parallax -1 0
+bindsym $mod+3 workspace $workspace3; exec $parallax -2 0
+bindsym $mod+4 workspace $workspace4; exec $parallax -3 0
+bindsym $mod+5 workspace $workspace5; exec $parallax -4 0
+bindsym $mod+6 workspace $workspace6; exec $parallax -5 0
+bindsym $mod+7 workspace $workspace7; exec $parallax -6 0
+bindsym $mod+8 workspace $workspace8; exec $parallax -7 0
+bindsym $mod+9 workspace $workspace9; exec $parallax -8 0
+bindsym $mod+0 workspace $workspace10; exec $parallax -9 0
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+set $control power
+
+mode "$control" {
+    bindsym p exec systemctl poweroff
+    bindsym r exec systemctl reboot
+    bindsym k exec i3-msg exit
+    bindsym l mode "default"; exec lock
+    bindsym s exec systemctl suspend
+    bindsym Escape mode "default"
+}
+
+set $screen screen
+#bindsym $mod+Shift+s mode "$screen"
+
+mode  "$screen" { 
+    bindsym e exec ~/.config/i3/screens/external.sh
+    bindsym i exec ~/.config/i3/screens/internal.sh
+    bindsym p exec ~/.config/polybar/launch.sh; mode "default"
+    bindsym Escape mode "default"
+}
+
+#new_window none
+#new_window pixel 2
+#new_window pixel 0
+
+# Colors
+set $yellow #d8ad56
+set $grey   #2d4359
+set $blue   #3d7edb
+set $orange #ec7a08
+set $black  #142233
+set $white  #f5eedd
+set $red     #c3073f
+
+#smart_borders off
+for_window [class="^.*"] border pixel 2
+
+# window colors
+#                       border   background  text     indicator
+client.focused          $white   #2b5797     #a9b7c6  $white $white
+client.unfocused        $grey    #2b5797     #a9b7c6  $grey $grey
+client.focused_inactive $grey    #2b5797     #a9b7c6  $grey $grey
+client.urgent           $red     #2b5797     #a9b7c6  $red $red
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 3%+
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 3%-
+bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle # mute sound
+
+# Screen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+
+# Touchpad controls
+bindsym $mod+Escape exec ~/.config/i3/toggletouchpad.sh
+
+# Media player controls
+bindsym XF86AudioPlay exec mpc toggle
+bindsym XF86AudioNext exec mpc next
+bindsym XF86AudioPrev exec mpc prev
+
+# gaps
+#gaps inner 27
+gaps inner 10
+#gaps top 55
+#gaps bottom 45
+#gaps inner 20
+gaps outer 15
+#smart_gaps on
+
+exec_always --no-startup-id feh --bg-fill --randomize ~/Pictures/Superheroes/*
+exec_always --no-startup-id xbacklight -set 35
+exec_always --no-startup-id amixer set Master 35%
+exec_always --no-startup-id compton
+exec_always --no-startup-id setxkbmap latam
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec --no-startup-id i3-msg 'workspace $workspace1; exec terminator;'
+
+exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
+#exec --no-startup-id xautolock -time 10 -locker "lock"
+exec --no-startup-id xautolock -time 15 -locker "terminator -f -e cmatrix -c ~/.config/terminator/config"
+
+# Program Launchers
+bindsym $mod+Shift+t exec terminator -e ranger
+bindsym $mod+Shift+n exec firefox
+bindsym $mod+Shift+d exec idea-community
+bindsym $mod+Shift+m exec spotify
+bindsym $mod+Return exec terminator -c ~/.config/terminator/config
+bindsym $mod+d exec rofi -show run -theme .config/rofi/config
+bindsym $mod+Shift+e exec --no-startup-id powermenu $(echo "�" | rofi -dmenu -config ~/.config/rofi/powermenu.rasi)
+bindsym Print exec scrot -e 'mv $f ~/Pictures/Screenshots'

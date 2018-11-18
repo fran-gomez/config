@@ -1,0 +1,308 @@
+# https://blog.visme.co/website-color-schemes/
+[global]
+RED = #c3073f
+GREEN = #879637
+BLUE = #81a1c1
+#3d7edb
+GREY = #323232
+WHITE = #eceff4
+#f5eedd
+PURPLE = #8b5773
+ORANGE = #ec7a08
+
+[bar/top]
+enable-ipc = true
+bottom = false
+monitor = eDP1
+width = 100%
+height = 35
+dpi = 192
+
+background = ${global.GREY}
+foreground = ${global.WHITE}
+
+line-color = ${bar/bottom.background}
+line-size = 1
+
+spacing = 0
+padding-right = 2
+module-margin-left = 2
+module-margin-right = 2
+
+separator = |
+
+font-2 = "fixed:pixelsize=6;1"
+font-1 = "unifont:fontformat=truetype:pizelsize=6:antialias=false;0"
+font-0 = "Hack:pixelsize=6;1"
+
+modules-left = powermenu
+modules-right = filesystem cpu memory temperature volume wireless-network
+
+wm-restack = i3
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+overline-size = 10
+overline-color = ${self.background}
+underline-size = 2
+underline-color = ${self.background}
+
+#------------------------------------------------------
+[bar/bottom]
+monitor = eDP1
+bottom = true
+width = 100%
+height = 35
+dpi = 192
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+background = ${bar/top.background}
+foreground = ${bar/top.foreground}
+
+line-color = ${bar/top.background}
+line-size = 2
+
+separator = ${bar/top.separator}
+
+spacing = 1
+padding-right = 2
+module-margin-left = 2 
+module-margin-right = 2
+
+font-0 = ${bar/top.font-0}
+font-1 = ${bar/top.font-1}
+font-2 = ${bar/top.font-2}
+
+modules-left = i3
+modules-center = spotify
+modules-right = backlight battery clock
+
+#------------------------------------------------------
+[module/backlight]
+type = internal/backlight
+format = <label>
+
+card = intel_backlight
+
+label = Bright: %percentage%%
+
+#------------------------------------------------------
+[module/battery]
+type = internal/battery
+full-at = 98
+battery = BAT1
+adapter = AC
+
+format-charging = <label-charging>
+format-discharging = <label-discharging>
+format-full = FULL
+format-full-foreground = ${global.GREEN}
+
+label-charging = BAT1: %percentage%%
+label-charging-foreground = ${global.BLUE}
+label-discharging = %percentage%% %time%
+label-discharging-foreground = ${global.RED}
+
+#------------------------------------------------------
+[module/cpu]
+type = internal/cpu
+interval = 0.5
+format = <label>
+
+label = CPU %percentage%%
+
+#------------------------------------------------------
+[module/memory]
+type = internal/memory
+format = <label>
+label = RAM %gb_used% / %gb_total%
+
+#------------------------------------------------------
+[module/wireless-network]
+type = internal/network
+interface = wlp2s0
+interval = 3.0
+ping-interval = 10
+
+format-connected = <label-connected> 
+label-connected = %essid% 
+label-connected-foreground = ${global.GREEN}
+label-disconnected = Disconnected
+label-disconnected-foreground = ${global.RED}
+
+#------------------------------------------------------
+[module/volume]
+type = internal/alsa
+interval = 0.5
+
+master-soundcard = default
+speaker-soundcard = default
+
+master-mixer = Master
+speaker-mixer = Speaker
+
+mapped = true
+
+format-volume = Vol: <label-volume>
+format-volume-foreground = ${global.GREEN}
+label-muted = Muted
+label-muted-foreground = ${global.RED}
+
+#------------------------------------------------------
+[module/filesystem]
+type = internal/fs
+interval = 30
+
+mount-0 = /boot
+mount-1 = /
+mount-2 = /home
+
+label-mounted =  %mountpoint%: %percentage_used%%
+label-mounted-foreground = ${global.GREEN}
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${global.RED}
+
+#------------------------------------------------------
+[module/powermenu]
+type = custom/menu
+
+format-padding = 2
+label-open = Power
+label-open-foreground = ${global.GREEN}
+label-close = Cancel
+label-close-foreground = ${global.RED}
+label-separator = |
+
+menu-0-0 = Terminate WM
+menu-0-0-foreground = ${global.ORANGE}
+menu-0-0-exec = pkill i3
+menu-0-1 = Reboot
+menu-0-1-foreground = ${global.ORANGE}
+menu-0-1-exec = reboot
+menu-0-2 = Power off
+menu-0-2-foreground = ${global.ORANGE}
+menu-0-2-exec = halt
+menu-0-3 = Suspend
+menu-0-3-exec = s2ram
+menu-0-3-foreground = ${global.ORANGE}
+
+#------------------------------------------------------
+[module/clock]
+type = internal/date
+interval = 1
+date = %d-%m-%Y  %H:%M%
+
+#------------------------------------------------------
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+;thermal-zone = 1
+;thermal-zone = 2
+warn-temperature = 65
+
+format = <label>
+format-warn = <label-warn>
+
+label = %temperature-c%
+label-foreground = ${global.GREEN}
+label-warn = HOT! %temperature-c%
+label-warn-foreground = ${global.RED}
+label-warn-underline = ${global.RED}
+
+#------------------------------------------------------
+[module/i3]
+type = internal/i3
+
+pin-workspaces = true
+strip-wsnumbers = true
+index-sort = true
+
+; Use fuzzy (partial) matching on labels when assigning 
+; icons to workspaces
+; Example: code;♚ will apply the icon to all workspaces 
+; containing 'code' in the label
+; Default: false
+fuzzy-match = true
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-default =
+
+label-dimmed-underline = ${root.background}
+
+; Available tags:
+;   <label-state> (default) - gets replaced with <label-(focused|unfocused|visible|urgent)>
+;   <label-mode> (default)
+format = <label-state> <label-mode>
+
+; Available tokens:
+;   %mode%
+; Default: %mode%
+label-mode = %mode%
+label-mode-padding = 0
+label-mode-background = #e60053
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-focused =  %index%
+label-focused-foreground = ${global.WHITE}
+label-focused-background = #414141
+label-focused-underline = ${global.ORANGE}
+label-focused-padding = 4
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-unfocused = %index%
+label-unfocused-padding = 4
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-visible = %index%
+label-visible-underline = ${global.ORANGE}
+label-visible-padding = 4
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-urgent = %index%
+label-urgent-foreground = #000000
+label-urgent-background = ${global.RED}
+label-urgent-padding = 4
+
+; Separator in between workspaces
+label-separator = |
+label-separator-padding = 0
+label-separator-foreground = ${global.ORANGE}
+
+#------------------------------------------------------
+[module/spotify]
+type = custom/script
+interval = 5
+format-prefix =
+format = <label>
+exec = /home/fgomez/.config/polybar/spotify.py
+
+format-underline = ${global.PURPLE}
+
+; vim:ft=dosini
