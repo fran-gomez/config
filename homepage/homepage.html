@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1">
+    <title>Home</title>
+    <link rel="icon"
+          sizes="16x16 32x32 64x64"
+          href="./assets/favicons/favicon.ico">
+    <link rel="stylesheet"
+          type="text/css"
+          href="./style.css">
+    <script type="text/javascript"
+            src="./script.js">
+    </script>
+  </head>
+  <body>
+    <div id="clock"></div>
+    <div id="grid">
+      <div>
+        <ul>
+
+          <li>
+            <a href="https://www.reddit.com/new">
+              <img src="./assets/reddit.svg"></img>
+              Reddit
+            </a>
+          </li>
+
+          <li>
+            <a href="https://cs.uns.edu.ar">
+              <img src="./assets/mastodon.ico"></img>
+              DCIC
+            </a>
+            <button onclick="this.nextElementSibling.classList.toggle('closed')">⋮</button>
+            <ul class="sublist closed">
+              <li>
+                <a href="https://cs.uns.edu.ar/~dcm/tdp">
+                  Tecnologia de Programacion
+                </a>
+              </li>
+              <li>
+                <a href="https://cs.uns.edu.ar/~ags/OC">
+                  Organizacion de Computadoras
+                </a>
+              </li>
+              <li>
+                <a href="https://cs.uns.edu.ar/~gd/soyd/index.php">
+                  Operativos y Distribuidos
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="https://youtube.com/feed/subscriptions">
+              <img src="./assets/yt.svg"></img>
+              YouTube
+            </a>          
+          </li>
+
+        </ul>
+      </div>
+      <div>
+        <ul>
+          <li id="google" class="searchProvider">
+            <img src="./assets/google.svg"></img>
+            <form role="search"
+                  method="get"
+                  action="http://www.google.com/search">
+              <input id="search"
+                     type="text"
+                     autocomplete="off"
+                     value=""
+                     name="q">
+               </input>
+            </form>
+            <button onclick="this.nextElementSibling.classList.toggle('closed')">⋮</button>
+            <ul class="sublist closed">
+              <li>
+                <img src="./assets/ddg.svg"></img>
+                <form role="search"
+                      method="get"
+                      action="https://duckduckgo.com/">
+                  <input type="text"
+                         value=""
+                         placeholder="DuckDuckGo"
+                         autocomplete="off"
+                         name="q">
+                  </input>
+                </form>
+              </li>
+              <li>
+                <img src="./assets/yt.svg"></img>
+                <form role="search"
+                      method="get"
+                      action="https://www.youtube.com/results?search_query=">
+                  <input type="text"
+                         value=""
+                         placeholder="YouTube"
+                         autocomplete="off"
+                         name="q">
+                  </input>
+                </form>
+              </li>
+              <li>
+                <img src="./assets/maps.svg"></img>
+                <form role="search"
+                      method="get"
+                      action="https://www.google.com/maps/place/">
+                  <input type="text"
+                         value=""
+                         placeholder="Maps"
+                         autocomplete="off"
+                         name="q">
+                  </input>
+                </form>
+              </li>
+              <li>
+                <img src="./assets/pb.png"></img>
+                <form role="search"
+                      id="pbSearch"
+                      onsubmit="pbSearch()">
+                  <input type="text"
+                         id="pb"
+                         placeholder="Pirate Bay"
+                         autocomplete="off">
+                  </input>
+                </form>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <ul>
+          <li>
+            <a href="https://inbox.google.com">
+              <img src="./assets/inbox.png"></img>
+              Inbox
+            </a>
+          </li>
+          <li>
+            <a href="https://onedrive.com">
+              <img src="./assets/drive.svg"></img>
+              One Drive
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

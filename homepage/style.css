@@ -1,0 +1,200 @@
+* {
+  font-family: "SF Pro Text";
+  -webkit-tap-highlight-color: transparent 
+}
+body,html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  background: #434343;
+  overflow-y: overlay;
+}
+a {
+  color: white;
+  font-weight: 400;
+  text-decoration: none;
+  overflow: ellipsis; white-space: nowrap;
+  transition: color .1s;
+}
+a:hover {
+  color: #88C0D0;
+}
+
+*:focus {
+  outline: none;
+}
+#clock {
+  color: white;
+  height: 100px;
+  font: 300 100px "Monaco for Powerline";
+  line-height: 1;
+  padding: 100px 0 30px 0;
+  text-align: center;
+  text-shadow: 0px 2px 4px black; 
+}
+#grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: ". . .";
+  width: 95%;
+  max-width: 850px;
+  margin: auto
+}
+#grid ul {
+  list-style-type: none;
+  margin: 0 10px;
+  padding: 0;
+  line-height: 40px;
+  font-size: 16px;
+}
+#grid > div > ul {
+  background: #545454;
+  border-radius: 5px;
+  border: 1px solid #323232;
+  padding: 10px 0px 10px 20px;
+  box-shadow: 0px 2px 4px #323232;
+}
+
+#grid > div > ul > li > a > img,
+#grid .sublist > li > a > img {
+  height: 20px;
+  vertical-align: middle;
+  margin-right: 10px;
+  margin-top: -2px;
+}
+
+#grid ul li::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+#grid .sublist  {
+  font-size: 85%;
+  line-height: 35px;
+  margin: 10px;
+  margin-top: 0px;
+  transition: margin-top .2s cubic-bezier(0, 1, 0.5, 1);
+}
+
+.sublist li {
+  height: 35px;
+  margin-left: 25px;
+}
+
+#google .sublist li {
+  margin-left: 10px;
+}
+
+.sublist img {
+  width: 25px;
+  margin: 3px 2px 7px 5px;
+  display: inline-block;
+}
+
+.sublist form {
+  display: inline-block;
+  height: 35px;
+  vertical-align: top;
+  width: calc(100% - 36px);
+}
+
+.sublist form input {
+  display: inline-block;
+  vertical-align: top;
+  height: 35px;
+  color: white;
+  line-height: 35px;
+  font-size: 16px;
+  width: 100%;
+  margin: 0; padding: 0; border: 0;
+  background: transparent;
+    
+}
+
+#grid li:last-child .sublist { margin-bottom: 0 }
+#grid button {
+  float: right;
+  color: white;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 40px;
+  height: 40px;
+  width: 40px;
+  margin: 0 2px;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 0;
+  background: #545454;
+  background-position: center;
+  transition: .35s background;
+}
+#grid button:hover {
+  color: #88C0D0;
+  background: #595959 radial-gradient(circle, #545454 1%, #595959 1%) center/15000%;
+}
+#grid button:active {
+  background-color: #4d4d4d;
+  background-size: 100%;
+  transition: background 0s;
+}
+
+#grid > div:nth-child(2) > ul {
+  height: 50px;
+  padding: 0;
+}
+
+#google > img {
+  height: 25px;
+  margin: 11px 5px 13.5px 12.5px;
+  display: inline-block;
+}
+#google > form {
+  display: inline-block;
+  height: 50px;
+  width: calc(100% - 95.5px);
+  vertical-align: top;
+}
+#google > form > input {
+  height: 50px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  width: 100%;
+  color: white;
+  line-height: 50px;
+  font-size: 20px;
+  display: inline;
+}
+
+#google > button {
+  margin: 5px 2px;
+}
+
+#google > ul {
+  background: #545454;
+  border-radius: 5px;
+  border: 1px solid #323232;
+  padding: 10px;
+  margin-top: -6px;
+  box-shadow: 0px 2px 4px #323232;
+}
+
+#google .sublist.closed {
+  opacity: 0;
+  padding: 0;
+  transition: opacity .2s;
+  box-shadow: none;
+  border: 0;
+}
+
+#grid .sublist.closed {
+  max-height: 0;
+  margin: 0;
+  margin-top: -10px;
+}
+#grid .sublist.closed li {
+  display: none;
+}
